@@ -503,6 +503,12 @@ class DropdownButton2State<T> extends State<DropdownButton2<T>>
   }
 
   void _handleTap() {
+    // ignore: deprecated_member_use
+    if (WidgetsBinding.instance.window.viewInsets.bottom > 0) {
+      WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+      return;
+    }
+
     final NavigatorState navigator = Navigator.of(context,
         rootNavigator:
             _dropdownStyle.isFullScreen ?? _dropdownStyle.useRootNavigator);
